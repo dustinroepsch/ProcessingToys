@@ -22,7 +22,7 @@ public class FractalTree extends PApplet {
         //get our angle by the mouse position on the screen
         float angle = map(mouseX, 0, width, 0, PI / 2);
         //get our dampening factor by the mouseY
-        float dampFactor = map(mouseY, 0, height, 0, 0.7f);
+        float dampFactor = map(mouseY, 0, height, 0.7f, 0);
         drawTree(100, angle, dampFactor);
     }
 
