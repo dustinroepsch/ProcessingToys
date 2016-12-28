@@ -21,7 +21,9 @@ public class FractalTree extends PApplet {
         stroke(255);
         //get our angle by the mouse position on the screen
         float angle = map(mouseX, 0, width, 0, PI / 2);
-        drawTree(100, angle, 0.7f);
+        //get our dampening factor by the mouseY
+        float dampFactor = map(mouseY, 0, height, 0, 0.7f);
+        drawTree(100, angle, dampFactor);
     }
 
     private void drawTree(float baseLength, float radians, float dampeningFactor) {
@@ -31,9 +33,9 @@ public class FractalTree extends PApplet {
         translate(width / 2, height);
         //draw a line straight up
         line(0, 0, 0, -baseLength);
-        //move to the tip of that line
+        //move to the tip of that linestroke(255);
         translate(0, -baseLength);
-        //draw the rest of the tree
+        //draw the rest of the tree and dampen!
         drawTreeRecursive(baseLength, radians, dampeningFactor);
         popMatrix();
         //undo our matrix changes :)
