@@ -9,6 +9,7 @@ import java.util.Iterator;
  */
 public class Voronoi extends PApplet {
     ArrayList<Point> points;
+    int lastDrawTime;
 
     @Override
     public void settings() {
@@ -18,6 +19,7 @@ public class Voronoi extends PApplet {
     @Override
     public void setup() {
         points = new ArrayList<Point>();
+        lastDrawTime = millis();
     }
 
     @Override
@@ -29,6 +31,21 @@ public class Voronoi extends PApplet {
             for (int j = 0; j < width; j++) {
                 pixels[i * width + j] = getClosestColor(i, j);
             }
+        }
+        if (millis() - lastDrawTime > 300) {
+            lastDrawTime = millis();
+            points.add(
+                    new Point(
+                            (int) random(0, width),
+                            (int) random(0, height),
+                            color(
+                                    random(0, 255),
+                                    random(0, 255),
+                                    random(0, 255)
+                            ),
+                            random(0, 2 * PI)
+
+                    ));
         }
         updatePixels();
 //        for (Point point : points) {
