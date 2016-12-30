@@ -1,6 +1,7 @@
 import processing.core.PApplet;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 
 /**
@@ -30,10 +31,17 @@ public class Voronoi extends PApplet {
             }
         }
         updatePixels();
-        for (Point point : points) {
-            ellipseMode(CENTER);
-            fill(color(0));
-            ellipse(point.x, point.y, 15, 15);
+//        for (Point point : points) {
+//            ellipseMode(CENTER);
+//            fill(color(0));
+//            ellipse(point.x, point.y, 15, 15);
+//        }
+        Iterator<Point> iterator = points.iterator();
+        while (iterator.hasNext()) {
+            Point current = iterator.next();
+            if (current.x < 0 || current.x > width || current.y < 0 || current.y > height) {
+                iterator.remove();
+            }
         }
     }
 
